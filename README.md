@@ -1,4 +1,4 @@
-## JSON on Web
+## JSON on the Web
 
 - JSON `Marshal` vs `UnMarshal`
 - Be careful while marshalling `rune`
@@ -17,7 +17,7 @@
   Authorization: Bearer <token>
   ```
   - In **Basic** Authorization we will send "username:password" encoded in base64 format with every request
-    - **Never use Basic with http since** we are sending username and password, only **https** is recommended
+    - **Never use Basic with http** since we are sending username and password, only **https** is recommended
     - `req.BasicAuth()` in go will return the username and password, you don't have to handle the base64 decoding part
   - In **Bearer** we can send tokens like JWT.
   - To know more on Authorization Header - https://beeceptor.com/docs/concepts/authorization-header/
