@@ -86,6 +86,7 @@ func encodeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func decodeHandler(w http.ResponseWriter, r *http.Request) {
+	// r.BasicAuth()
 	var persons []person
 	err := json.NewDecoder(r.Body).Decode(&persons)
 	if err != nil {
