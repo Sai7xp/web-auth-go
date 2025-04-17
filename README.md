@@ -46,8 +46,22 @@
 ## HMAC
 
 - Hash-based Message Authentication Code
-- hmac = Hash(message + secret)
+- `hmac = Hash(message + secret)`
 - secret is shared between two parties who trust each other
 - Sender sends {hmac,message}
-- Receiver generates the hmac of received message using secret key and compares new hmac signature with received one
+- Receiver generates the hmac of received message using secret key and compares new hmac signature with received hmac code
+- to prevent **faked bearer tokens**, use this hmac cryptographic "signing"
 
+## Bearer Tokens
+
+- added in http specification with OAUTH2
+- uses authorization header & keyword "Bearer"
+
+## JWT - JSON Web Tokens
+
+- {JWT standard fields - header}.{Your fields - payload}.{Signature}
+- `base64UrlEncode(header) + "." + base64UrlEncode(payload) + "." + signature`
+- base64 encoding is used because it will not generate periods(.) and we want our jwt token to be divided into 3 parts
+- [jwt.io](https://jwt.io)
+- anyone can read the payload or header since it's just base64 encoded string
+- 

@@ -22,6 +22,8 @@ func main() {
 		internal.RunHMAC()
 	case "4":
 		internal.RunJWT()
+	case "5":
+		internal.RunJwtAuthAPI()
 	default:
 		fmt.Println("Invalid Option")
 	}
