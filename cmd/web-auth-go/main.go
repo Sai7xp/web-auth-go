@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	internal "web-auth-go/internal"
-	myjson "web-auth-go/internal/01-json"
 )
 
 func main() {
@@ -16,11 +15,13 @@ func main() {
 
 	switch args[0] {
 	case "1":
-		myjson.RunJson()
+		internal.RunJson()
 	case "2":
 		internal.RunHashing()
 	case "3":
 		internal.RunHMAC()
+	case "4":
+		internal.RunJWT()
 	default:
 		fmt.Println("Invalid Option")
 	}
