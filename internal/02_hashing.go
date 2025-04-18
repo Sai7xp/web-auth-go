@@ -22,6 +22,7 @@ func RunHashing() {
 		// you can verify the sha256 checksum on go lang downloads page
 	*/
 
+	// hashing passwords along with the salt
 	// bcryptBytes, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)
 	// fmt.Println(string(bcryptBytes))
 }
