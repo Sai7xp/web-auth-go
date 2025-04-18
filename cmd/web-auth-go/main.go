@@ -24,6 +24,8 @@ func main() {
 		internal.RunJWT()
 	case "5":
 		internal.RunJwtAuthAPI()
+	case "6":
+		internal.RunBase64()
 	default:
 		fmt.Println("Invalid Option")
 	}
