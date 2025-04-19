@@ -1,4 +1,4 @@
-package main
+package run
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	internal "web-auth-go/internal"
 )
 
-func main() {
+func Run() {
 	args := os.Args[1:]
 	if len(args) == 0 {
 		log.Fatal("No option provided to run the code")
@@ -26,6 +26,8 @@ func main() {
 		internal.RunJwtAuthAPI()
 	case "6":
 		internal.RunBase64()
+	case "7":
+		internal.RunUserRegExercise()
 	default:
 		fmt.Println("Invalid Option")
 	}

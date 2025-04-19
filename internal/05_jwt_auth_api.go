@@ -63,6 +63,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getUserPostsHandler(w http.ResponseWriter, r *http.Request) {
+	// retrieve the user claims that we set during validate token middleware
 	claims, ok := r.Context().Value(userClaimsKey).(*UserClaims)
 	if !ok {
 		http.Error(w, "your claims not found in the token", http.StatusUnauthorized)
@@ -70,9 +71,7 @@ func getUserPostsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// validate token middleware will be executed before this handler
 	w.Header().Set("Content-Type", "application/json")
-	responseMap := map[string]string{"message": fmt.Sprintf("Hello %s! Welcome to the protected route.", claims.Username)}
-	respInBytes, _ := json.Marshal(responseMap)
-	w.Write(respInBytes)
+	w.Write([]byte(`{"message": "Hello ` + claims.Username + ` Welcome to the protected route. Here is your data" }`))
 	w.WriteHeader(http.StatusOK)
 }
 
