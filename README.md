@@ -86,4 +86,15 @@
 - go package `base64`
   - base64.URLEncoding
   - base64.StdEncoding
+
+## 💎 Add Authentication to Website - Exercise
+
+- when user hits the '/' root url, we will return the html for registration page
+  - User can enter username and password and hit enter, and the action for form is specified as POST in register form `<form action="/register" method="POST">`
+- `/register` is a POST call used for registering a new user.
+  - Store the new username and hashed password in db and redirect user to Login page
+  - `http.Redirect(w, r, "/login-page", http.StatusSeeOther)`
+- `/login-page` is a GET request which returns the html for login form
+  - input username and password and submit. the login req will go to `/login` post method
+  - If the username and password matches then set the cookie and navigate user to dashboard
 -
