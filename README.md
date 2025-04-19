@@ -113,13 +113,14 @@
 - **Creating a session:**
   - Create a unique sessionId for user
   - Generate a hmac code with that session id - hmac = (sessionId + secret_key)
-  - **Store the sessionId:signature in db**
-  - Set the `signature|sessionId` as Cookie.
+  - **Store the sessionId:username in db**
+  - Set the `sessionSignature|sessionId` as Cookie.
 - **Creating a session:**
   - 🫆 How do we verify that session token is valid from the next request ?
-  - Extract the sessionId from the cookie in request (`signature|sessionId`) strings.Split(|)
+  - Extract the sessionId from the cookie in request (`sessionSignature|sessionId`) strings.Split(|)
   - Create a new Signature(hmac) with sessionId and secret key.
   - Compare the signature received in the cookie and the new generated signature. if both match then check the db.
   - If the session exists, we consider that session as valid. and we will get the userId from sessionDB where we mapped `sessionId:username`
+- **Note:** Instead of hmac signature and all, we can also create the session token as a random string. (HDFC session token is just a random string generated using crypt/rand package)
 
 [def]: internal/SessionBasedAndJWTAuthenticationExercise/01-PasswordBasedAuth/password_based_auth.go
