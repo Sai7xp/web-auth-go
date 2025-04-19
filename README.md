@@ -71,7 +71,7 @@
 - [Authenticating HTTP APIs with JWT](internal/05_jwt_auth_api.go)
 - **We can write a common middleware to validate the token, and if we want to pass the jwt payload (Claims) that we got by parsing the token to the main handler, we can pass it using the req Context.**
 
-#### Storing JWT in Cookies
+### Storing JWT in Cookies
 
 - We can store the token in browser Cookies if the APIs are being consumed by the client app running on a Web Browser.
   - Set Cookie during login `http.SetCookie(w, cookie)`
@@ -92,7 +92,7 @@
 - when user hits the '/' root url, we will return the html for registration page
   - User can enter username and password and hit enter, and the action for form is specified as POST in register form `<form action="/register" method="POST">`
 - `/register` is a POST call used for registering a new user.
-  - Store the new username and hashed password in db and redirect user to Login page
+  - Store the new username and hashed password in db and **redirect user** to Login page
   - `http.Redirect(w, r, "/login-page", http.StatusSeeOther)`
 - `/login-page` is a GET request which returns the html for login form
   - input username and password and submit. the login req will go to `/login` post method
