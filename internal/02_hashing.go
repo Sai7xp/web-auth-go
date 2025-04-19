@@ -8,8 +8,13 @@ import (
 
 func RunHashing() {
 	fmt.Println("Hashing")
-	hexBytes := sha256.Sum256([]byte("password"))
-	hexString := hex.EncodeToString(hexBytes[:]) // bs[:] trick to convert array to slice
+	bytes := sha256.Sum256([]byte("password"))
+	// hashing algorithms do the math on bits and returns the output in raw bytes
+	// to convert the raw bytes in printable format, we have to convert those raw bytes to either
+	// - hexadecimal
+	// - base64
+
+	hexString := hex.EncodeToString(bytes[:]) // bs[:] trick to convert array to slice
 	fmt.Println(hexString)
 	/*
 		You can do the same thing in terminal as well

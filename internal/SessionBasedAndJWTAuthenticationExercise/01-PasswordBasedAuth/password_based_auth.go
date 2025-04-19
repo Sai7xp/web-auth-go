@@ -1,4 +1,4 @@
-package internal
+package passwordbasedauth
 
 import (
 	"encoding/hex"
@@ -15,7 +15,7 @@ const (
 // username : hashedpassword
 var usersDb = make(map[string]string)
 
-func RunUserRegExercise() {
+func RunPasswordBasedAuth() {
 
 	mux := http.ServeMux{}
 

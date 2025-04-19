@@ -24,14 +24,14 @@ func RunHMAC() {
 // Sender side steps:
 // returns a signature of given message
 func generateHmac(msg, symmKey string) string {
-	// pass the hashing algorith that you want to use and secret key. hmac generates the hash combining both
+	// pass the hashing algorithm that you want to use and secret key. hmac generates the hash combining both
 	h := hmac.New(sha512.New, []byte(symmKey))
 	h.Write([]byte(msg))
-	signature := h.Sum(nil)
+	signatureBytes := h.Sum(nil)
 
-	signatureAsString := hex.EncodeToString(signature)
-	fmt.Println(signatureAsString)
-	return signatureAsString
+	signatureAsHexString := hex.EncodeToString(signatureBytes)
+	fmt.Println(signatureAsHexString)
+	return signatureAsHexString
 }
 
 func SendToReceiver(msg, hmacFromSender string) {
