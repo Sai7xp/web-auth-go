@@ -22,9 +22,14 @@
   - In **Bearer** we can send tokens like JWT.
   - To know more on Authorization Header - https://beeceptor.com/docs/concepts/authorization-header/
 
-## Storing Passwords In DB - Hashing
+## Hashing - Storing Passwords In DB
 
-- Never store plain passwords
+- **Hashing** algorithms will generate a **fixed array of bytes** for the given input.
+  - Hashing algorithms like SHA-256 do the math on bits and produce raw binary output, not text.
+  - **So if we do `string(bytes)` we will get gibberish or invisible chars. so we need to convert that bytes to printable format.**
+  - We can either convert it to hexadecimal format or base64 format, which are printable formats.
+  - Each hexadecimal is of **4 bits**, so for [32]byte hash we will get 64 length of hex string.
+- Never store plain passwords in db
 - Store password by Hashing them (hashing is irreversible). Even if the db gets leaked original password can't be recovered
 - Go packages for hashing the data - `sha256`, `bcrypt`
 - `shasum -a 256 go1.24.2.darwin-amd64.pkg`
@@ -87,14 +92,34 @@
   - base64.URLEncoding
   - base64.StdEncoding
 
-## 💎 Add Authentication to Website - Exercise
+## [💎 Password Authentication to Website - Exercise][def]
 
 - when user hits the '/' root url, we will return the html for registration page
   - User can enter username and password and hit enter, and the action for form is specified as POST in register form `<form action="/register" method="POST">`
 - `/register` is a POST call used for registering a new user.
-  - Store the new username and hashed password in db and **redirect user** to Login page
+  - Store the new username and hashed password in db(`map[string]string`) and **redirect user** to Login page
   - `http.Redirect(w, r, "/login-page", http.StatusSeeOther)`
 - `/login-page` is a GET request which returns the html for login form
-  - input username and password and submit. the login req will go to `/login` post method
-  - If the username and password matches then set the cookie and navigate user to dashboard
--
+  - input username and password and hit submit. the login req will go to `/login` post method
+  - If the username and password matches redirect user to dashboard
+- **The Problem:** We need password everytime to allow user to access a protected route.
+
+> HTTP is stateless so for every request we need password and username to authenticate the request. Instead of this we can implement either **Session-based** auth or **JWT token** based Auth. We will ask for password, username only one time i.e., at the time of login and from next time a session will be created
+
+## Session Based Authentication
+
+- First User register or sign up with username and password
+- Next at the time of login user will input the username and password. we will verify them with the values stored in db and make the login request success if they are correct.
+- **Creating a session:**
+  - Create a unique sessionId for user
+  - Generate a hmac code with that session id - hmac = (sessionId + secret_key)
+  - **Store the sessionId:signature in db**
+  - Set the `signature|sessionId` as Cookie.
+- **Creating a session:**
+  - 🫆 How do we verify that session token is valid from the next request ?
+  - Extract the sessionId from the cookie in request (`signature|sessionId`) strings.Split(|)
+  - Create a new Signature(hmac) with sessionId and secret key.
+  - Compare the signature received in the cookie and the new generated signature. if both match then check the db.
+  - If the session exists, we consider that session as valid. and we will get the userId from sessionDB where we mapped `sessionId:username`
+
+[def]: internal/SessionBasedAndJWTAuthenticationExercise/01-PasswordBasedAuth/password_based_auth.go

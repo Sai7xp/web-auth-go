@@ -5,6 +5,9 @@ import (
 	"log"
 	"os"
 	internal "web-auth-go/internal"
+	passwordAuth "web-auth-go/internal/SessionBasedAndJWTAuthenticationExercise/01-PasswordBasedAuth"
+	sessionAuth "web-auth-go/internal/SessionBasedAndJWTAuthenticationExercise/02-SessionBasedAuth"
+	JwtTokenBasedAuth "web-auth-go/internal/SessionBasedAndJWTAuthenticationExercise/03-JwtBasedAuth"
 )
 
 func Run() {
@@ -27,7 +30,11 @@ func Run() {
 	case "6":
 		internal.RunBase64()
 	case "7":
-		internal.RunUserRegExercise()
+		passwordAuth.RunPasswordBasedAuth()
+	case "8":
+		sessionAuth.RunSessionBasedAuth()
+	case "9":
+		JwtTokenBasedAuth.RunJwtBasedAuth()
 	default:
 		fmt.Println("Invalid Option")
 	}
