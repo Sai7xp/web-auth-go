@@ -92,7 +92,7 @@
   - base64.URLEncoding
   - base64.StdEncoding
 
-## [💎 Password Authentication to Website - Exercise][def]
+## [💎 Password Authentication to Website - Exercise](internal/SessionBasedAndJWTAuthenticationExercise/01-PasswordBasedAuth/password_based_auth.go)
 
 - when user hits the '/' root url, we will return the html for registration page
   - User can enter username and password and hit enter, and the action for form is specified as POST in register form `<form action="/register" method="POST">`
@@ -123,4 +123,6 @@
   - If the session exists, we consider that session as valid. and we will get the userId from sessionDB where we mapped `sessionId:username`
 - **Note:** Instead of hmac signature and all, we can also create the session token as a random string. (HDFC session token is just a random string generated using crypt/rand package)
 
-[def]: internal/SessionBasedAndJWTAuthenticationExercise/01-PasswordBasedAuth/password_based_auth.go
+## OAuth2
+
+- Open Authorization
