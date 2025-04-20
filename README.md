@@ -47,7 +47,7 @@
   - Decrypt the signature using sender **public key**
   - Generate the hash of message
   - Compare both the hash values
-- go package `ECDSA`
+- go package `ECDSA` - https://pkg.go.dev/crypto/ecdsa
 
 ## HMAC
 
