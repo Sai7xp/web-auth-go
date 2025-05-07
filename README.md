@@ -40,14 +40,16 @@
 - It's like digital version of signing a document with pen - but mathematically secure.
 - Use it for data **Integrity**(data is not altered) & **Authenticity**(msg came from expected person).
 - **Sender**
-  - Hash the message
-  - Sign the Hash with sender **private key**
+  - First Hash the message/digital document
+  - Sign the Hash with **sender private key** (We sign the hash, not the whole message, for performance and efficiency)
   - Send {message, signature}
 - **Receiver**
-  - Decrypt the signature using sender **public key**
-  - Generate the hash of message
+  - Decrypt/**Verify** the signature using sender **public key**
+  - Generate the hash of message/digital document
   - Compare both the hash values
 - go package `ECDSA` - https://pkg.go.dev/crypto/ecdsa
+
+> Signing ≠ encryption - When we say sign the hash with key, nothing is encrypted in traditional sense. Signing = Applying a mathematical function like ECDSA or RSA on the hash.
 
 ## HMAC
 
