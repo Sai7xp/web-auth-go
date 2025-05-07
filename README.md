@@ -8,7 +8,7 @@
 ## Authentication, Authorization
 
 - **Authentication** - verifies who you are (verifies that no-one is impersonating you)
-- **Authorization** - Defines what we can do
+- **Authorization** - Defines what you can do
 - How can we add Authentication for APIs ?
   - One way is to do it via **Authorization** Header
   - Two common authorization schmes
